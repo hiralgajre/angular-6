@@ -1,0 +1,49 @@
+<div class="col-md-12">
+  <h2> User Details</h2>
+  <div class="col-md-12">
+    <button class="btn btn-outline-primary float-right" (click)="addUser()"> Add User</button>
+    
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This is example from ItSolutionStuff.com
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Annual Salary</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employee;  index as indexOfelement">
+        <td class="hidden">{{indexOfelement + 1}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.code}}</td>
+        <td>{{emp.annualSalary}}</td>
+        <td><button class="btn btn-danger" (click)="deleteUser(emp)"> Delete</button>
+          <button class="btn btn-danger" (click)="editEmployee(emp.id)" style="margin-left: 20px;"> Edit</button>
+          <select class="form-control" id="select" [value]="emp.status" (change)='changeStatus(emp.id,$event)'>
+            <option value="1">Enable</option>
+            <option value="0">Disable</option>
+
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

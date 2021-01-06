@@ -1,0 +1,34 @@
+<div class="col-md-6">
+    <h2 class="text-center">Add User</h2>
+    <p class="alert alert-success" *ngIf="showAlert">
+      <strong >{{AlertMessage.message}}</strong> 
+  </p>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="id" formControlName="id" placeholder="id" name="id" class="form-control hidden" id="id">
+        <label for="name">Name:</label>
+        <input type="name" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+      </div>
+  
+      <div class="form-group">
+        <label for="code">Code:</label>
+        <input formControlName="code" placeholder="Code" name="code" class="form-control" id="code">
+        
+      </div>
+  
+      <div class="form-group">
+        <label for="annualSalary">Annual salary:</label>
+        <input formControlName="annualSalary" placeholder="annual salary" name="annualSalary" class="form-control" id="annualSalary">
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select class="form-control" formControlName="status" id="select" >
+          <option value="1">Enable</option>
+          <option value="0">Disable</option>
+          
+        </select>
+      </div>
+     
+      <button class="btn btn-success">Update</button>
+    </form>
+  </div>

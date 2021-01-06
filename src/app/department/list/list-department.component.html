@@ -1,0 +1,78 @@
+<div class="col-md-12">
+    <h2> User Details</h2>
+      <button type="button" class="btn btn-primary float-right" (click) = "show(0)">
+        Add Department
+      </button>
+      <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">{{ title }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" (click)="hide()">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <div class="col-md-6">
+                    <p class="alert alert-success" *ngIf="showAlert">
+                      <strong >{{AlertMessage.message}}</strong> 
+                  </p>
+                    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group">
+                        <input type="id" formControlName="id" placeholder="id" name="id" class="form-control hidden" id="id">
+                        <label for="name">Name:</label>
+                        <input type="name" formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+                      </div>
+                  
+                      <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control" formControlName="status" id="select" >
+                          <option value="1">Enable</option>
+                          <option value="0">Disable</option>
+                          
+                        </select>
+                      </div>
+                     
+                      <button class="btn btn-success">Update</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="hide()">Close</button>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="hidden">Id</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of department; index as indexOfelement">
+          <td class="hidden">{{indexOfelement + 1}}</td>
+          <td>{{emp.name}}</td>
+          <td><button class="btn btn-danger" (click)="deleteUser(emp)"> Delete</button>
+            
+            <button type="button" class="btn btn-primary" (click) = "show(emp.id)">
+              Edit
+            </button>
+            <!-- <button class="btn btn-danger" (click)="editEmployee(emp.id)" style="margin-left: 20px;"> Edit</button> -->
+            <select class="form-control" id="select" [value]="emp.status" (change)='changeStatus(emp.id,$event)'>
+              <option value="1">Enable</option>
+              <option value="0">Disable</option>
+  
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
